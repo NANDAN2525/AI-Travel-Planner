@@ -21,11 +21,15 @@ export default function GoogleAuth({ className = '' }: GoogleAuthProps) {
   const [signingIn, setSigningIn] = useState(false);
 
   useEffect(() => {
+    if (!auth) {
+      setUser(null);
+      setLoading(false);
+      return;
+    }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
     });
-
     return () => unsubscribe();
   }, []);
 
