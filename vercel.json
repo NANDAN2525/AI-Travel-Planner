@@ -1,0 +1,56 @@
+{
+    "framework": "nextjs",
+    "buildCommand": "npm run build",
+    "devCommand": "npm run dev",
+    "installCommand": "npm install",
+    "outputDirectory": ".next",
+    "env": {
+        "NEXT_PUBLIC_FIREBASE_API_KEY": "@firebase-api-key",
+        "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN": "@firebase-auth-domain",
+        "NEXT_PUBLIC_FIREBASE_PROJECT_ID": "@firebase-project-id",
+        "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET": "@firebase-storage-bucket",
+        "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "@firebase-messaging-sender-id",
+        "NEXT_PUBLIC_FIREBASE_APP_ID": "@firebase-app-id",
+        "GOOGLE_CLOUD_PROJECT_ID": "@google-cloud-project-id",
+        "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY": "@google-maps-api-key",
+        "VERTEX_AI_LOCATION": "@vertex-ai-location",
+        "VERTEX_AI_MODEL": "@vertex-ai-model",
+        "RAZORPAY_KEY_ID": "@razorpay-key-id",
+        "RAZORPAY_KEY_SECRET": "@razorpay-key-secret",
+        "STRIPE_PUBLISHABLE_KEY": "@stripe-publishable-key",
+        "STRIPE_SECRET_KEY": "@stripe-secret-key",
+        "EMT_INVENTORY_API_URL": "@emt-inventory-api-url",
+        "EMT_INVENTORY_API_KEY": "@emt-inventory-api-key",
+        "OPENWEATHER_API_KEY": "@openweather-api-key"
+    },
+    "functions": {
+        "src/app/api/**/*.ts": {
+            "maxDuration": 30
+        }
+    },
+    "headers": [
+        {
+            "source": "/api/(.*)",
+            "headers": [
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "Content-Type, Authorization"
+                }
+            ]
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/$1"
+        }
+    ]
+}
